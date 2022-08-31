@@ -1,0 +1,16 @@
+{% extends 'dashboard-tpl.html.twig' %}
+
+{% block page %}profile{% endblock %}
+
+{% block content %}
+    <div id="account-details">
+        <h3>Account details </h3>
+        <div class="login">
+            <div class="login_form_container">
+                <div class="account_login_form">
+                    {{ form(profile_form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'dashboard-tpl.html.twig' %}
+
+{% block page %}addresses{% endblock %}
+
+{% block content %}
+    <div class="" id="address">
+        <p>The following addresses will be used on the checkout page by default.</p>
+        <div class="row">
+            <div class="d-inline-flex justify-content-between my-2">
+                <h5 class="billing-address">Billing address</h5>
+                <a href="{{ path('app_address_new') }}" class="btn bg-primary text-white">
+                    New Address
+                </a>
+            </div>
+
+            {% if app.user.addresses|length == 0 %}
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                </p>
+            {% else %}
+                {% for address in app.user.addresses %}
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card card-body">
+                            <div class="d-inline-block">
+                                <a href="{{ path('app_address_edit', {id:address.id}) }}" class="view float-start">Edit</a>
+                                <a href="{{ path('app_address_delete', {id:address.id}) }}" class="view text-danger float-end">Delete</a>
+                            </div>
+                            <p class="mb-2"><strong>{{ address.fullName }}</strong></p>
+                            <address>
+                                <span class="mb-1 d-inline-block"><strong>Address:</strong> {{ address.address }}</span>
+                                <br>
+                                {% if address.company %}
+                                    <span class="mb-1 d-inline-block"><strong>Company:</strong> {{ address.company }}</span>
+                                    <br>
+                                {% endif %}
+                                <span class="mb-1 d-inline-block"><strong>Country:</strong> {{ address.country }}</span>
+                                <br>
+                                <span class="mb-1 d-inline-block"><strong>ZIP:</strong> {{ address.zipcode }}</span>
+                                <br>
+                                <span><strong>Phone:</strong> {{ address.phone }}</span>
+                            </address>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}checkout{% endblock %}
+
+{% block body %}
+
+    <div class="container py-5">
+        <section class="row">
+            <div class="col-12 col-lg-6 mb-5 mb-lg-0">
+                <div class="billing-info-wrap">
+                    <h3>Billing Details</h3>
+                    <div class="mx-2 mx-md-0">
+                        {% set formHtml %}
+                            {{ form_start(order_form) }}
+                                {{ form_label(order_form.address, 'Choose your delivery address :') }}
+                            <a href="{{ path('app_address_new', {order:1}) }}" class="mb-2">
+                                <i class="fa fa-plus"></i> Add new address
+                            </a>
+                            {{ form_end(order_form) }}
+                        {% endset %}
+
+                        {{ formHtml|replace({'[br]':'<br>'})|raw }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="your-order-area">
+                    <h3>Your order</h3>
+                    <div class="your-order-wrap gray-bg-4">
+                        <div class="your-order-product-info">
+                            <div class="your-order-top">
+                                <ul>
+                                    <li>Product(s)</li>
+                                    <li>Total</li>
+                                </ul>
+                            </div>
+                            <div class="your-order-middle">
+                                {% for item in cart %}
+                                    <div class="row justify-content-between mb-3 align-items-center small text-nowrap">
+                                        <div class="col-7 text-start">
+                                            <img src="/uploads/{{ item['product'].image }}" class="rounded me-2" alt="" height="50" width="50">
+                                            <span>{{ item['product'].name }}</span>
+                                        </div>
+                                        <div class="col-2 text-center">
+                                            <span>X {{ item['qty'] }}</span>
+                                        </div>
+                                        <div class="col-3 text-end">
+                                            <span class="order-price">$ {{ item['sub-total']|number_format(2) }}</span>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="your-order-bottom">
+                                <ul>
+                                    <li class="your-order-shipping">Shipping</li>
+                                    <li>Free shipping</li>
+                                </ul>
+                            </div>
+                            <div class="your-order-total">
+                                <ul>
+                                    <li class="order-total">Total</li>
+                                    <li>$ <span id="js-cart-total">{{ total|number_format(2) }}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-accordion element-mrg">
+                                <div id="faq" class="panel-group">
+                                    <div class="panel panel-default single-my-account m-0">
+                                        <div class="panel-heading my-account-title">
+                                            <h4 class="panel-title"><a data-bs-toggle="collapse" href="#my-account-1" class="collapsed" aria-expanded="true">Direct bank transfer</a>
+                                            </h4>
+                                        </div>
+                                        <div id="my-account-1" class="panel-collapse collapse show" data-bs-parent="#faq">
+                                            <div class="panel-body">
+                                                <p>Please send a check to Store Name, Store Street, Store Town,
+                                                    Store State / County, Store Postcode.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default single-my-account m-0">
+                                        <div class="panel-heading my-account-title">
+                                            <h4 class="panel-title"><a data-bs-toggle="collapse" href="#my-account-2" aria-expanded="false" class="collapsed">Check payments</a></h4>
+                                        </div>
+                                        <div id="my-account-2" class="panel-collapse collapse" data-bs-parent="#faq">
+                                            <div class="panel-body">
+                                                <p>Please send a check to Store Name, Store Street, Store Town,
+                                                    Store State / County, Store Postcode.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default single-my-account m-0">
+                                        <div class="panel-heading my-account-title">
+                                            <h4 class="panel-title"><a data-bs-toggle="collapse" href="#my-account-3">Cash on delivery</a></h4>
+                                        </div>
+                                        <div id="my-account-3" class="panel-collapse collapse" data-bs-parent="#faq">
+                                            <div class="panel-body">
+                                                <p>Please send a check to Store Name, Store Street, Store Town,
+                                                    Store State / County, Store Postcode.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Place-order mt-25">
+                        <a class="btn-hover" href="#">Place Order</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}

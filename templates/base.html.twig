@@ -1,19 +1,54 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Hmart-Smart Product eCommerce html Template">
+    <meta name="author" content="H-mart">
+    <title>{{ block('title') | capitalize }} - Hmart</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Montserrat:300,400,500,600,700,800" rel="stylesheet">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<main>
+    {% include '_includes/header.html.twig' %}
+    <div class="container">
+        {% if alert is defined %}
+            {% if alert  %}
+                <div class="alert alert-{{ alert}} alert-dismissible fade show d-flex align-items-center" role="alert">
+                    {% if alert is same as('danger') %}<i class="fa-light fa-triangle-exclamation me-2"></i>{% endif %}
+                    {% if alert is same as('success') %}<i class="fa-light fa-circle-check me-2"></i>{% endif %}
+                    <div> {{ alert_message }} </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+
+
+    {% block body %}{% endblock %}
+
+    {% include '_includes/footer.html.twig' %}
+</main>
+
+<!-- Script -->
+<script src="{{ asset('assets/js/vendor.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins.min.js') }}"></script>
+<script src="{{ asset('assets/js/main.min.js') }}"></script>
+<script src="{{ asset('assets/js/custom.js') }}"></script>
+{% block javascripts %}{% endblock %}
+<script>
+    let url = document.location.origin;
+    $.getJSON(url+'/cart/info', function(data){
+        $('.js-cart-items').text(data.items);
+    });
+</script>
+</body>
 </html>

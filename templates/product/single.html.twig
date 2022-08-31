@@ -1,0 +1,157 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}products{% endblock %}
+
+{% block body %}
+    <!-- Product Details Area Start -->
+    <div class="product-details-area pt-100px pb-100px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 col-xs-12 mb-lm-30px mb-md-30px mb-sm-30px">
+                    <!-- Swiper -->
+                    <div class="swiper-container zoom-top">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img class="img-responsive m-auto" src="/uploads/{{ product.image }}" alt="">
+                                <a class="venobox full-preview" data-gall="myGallery" href="/uploads/{{ product.image }}">
+                                    <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="img-responsive m-auto" src="assets/images/product-image/zoom-image/2.webp" alt="">
+                                <a class="venobox full-preview" data-gall="myGallery" href="assets/images/product-image/zoom-image/2.webp">
+                                    <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-container mt-20px zoom-thumbs slider-nav-style-1 small-nav">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img class="img-responsive m-auto" src="/uploads/{{ product.image }}" alt="">
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="img-responsive m-auto" src="assets/images/product-image/small-image/2.webp" alt="">
+                            </div>
+                        </div>
+                        <!-- Add Arrows -->
+                        <div class="swiper-buttons">
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-details-content quickview-content ml-25px">
+                        <h2>{{ product.name }}</h2>
+                        <div class="pricing-meta">
+                            <ul class="d-flex">
+                                <li class="new-price">{{ (product.price/100)|number_format(2) }} &dollar;</li>
+                            </ul>
+                        </div>
+                        <p class="mt-30px">{{ product.short }}</p>
+                        <div class="pro-details-quality">
+                            <div class="cart-plus-minus">
+                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
+                            </div>
+                            <div class="pro-details-cart">
+                                <a href="{{ path('app_cart_add', {id:product.id}) }}" class="add-cart"> Add To
+                                    Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- product details description area start -->
+                    <div class="description-review-wrapper">
+                        <div class="description-review-topbar nav">
+                            <button data-bs-toggle="tab" data-bs-target="#des-details2">Information</button>
+                            <button class="active" data-bs-toggle="tab" data-bs-target="#des-details1">Description</button>
+                        </div>
+                        <div class="tab-content description-review-bottom">
+                            <div id="des-details2" class="tab-pane">
+                                <div class="product-anotherinfo-wrapper text-start">
+                                    <ul>
+                                        <li><span>Weight</span> 400 g</li>
+                                        <li><span>Dimensions</span>10 x 10 x 15 cm</li>
+                                        <li><span>Materials</span> 60% cotton, 40% polyester</li>
+                                        <li><span>Other Info</span> American heirloom jean shorts pug seitan letterpress</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="des-details1" class="tab-pane active">
+                                <div class="product-description-wrapper">
+                                    <p>{{ product.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- product details description area end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Product Area Start -->
+    <div class="product-area related-product">
+        <div class="container">
+            <!-- Section Title & Tab Start -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title text-center m-0">
+                        <h2 class="title">Related Products</h2>
+                        <p>There are many variations of passages of Lorem Ipsum available</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Section Title & Tab End -->
+            <div class="row">
+                <div class="col">
+                    <div class="new-product-slider swiper-container slider-nav-style-1">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <!-- Single Prodect -->
+                                <div class="product">
+                                        <span class="badges">
+                                        <span class="new">New</span>
+                                        </span>
+                                    <div class="thumb">
+                                        <a href="single-product.html" class="image">
+                                            <img src="assets/images/product-image/1.webp" alt="Product" />
+                                            <img class="hover-image" src="assets/images/product-image/1.webp" alt="Product" />
+                                        </a>
+                                    </div>
+                                    <div class="content">
+                                        <span class="category"><a href="#">Accessories</a></span>
+                                        <h5 class="title"><a href="single-product.html">Modern Smart Phone
+                                            </a>
+                                        </h5>
+                                        <span class="price">
+                                            <span class="new">$38.50</span>
+                                            </span>
+                                    </div>
+                                    <div class="actions">
+                                        <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
+                                                    class="pe-7s-shopbag"></i></button>
+                                        <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
+                                                    class="pe-7s-like"></i></button>
+                                        <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></button>
+                                        <button class="action compare" title="Compare" data-bs-toggle="modal" data-bs-target="#exampleModal-Compare"><i
+                                                    class="pe-7s-refresh-2"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add Arrows -->
+                        <div class="swiper-buttons">
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Product Area End -->
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/cart.js') }}"></script>
+{% endblock %}

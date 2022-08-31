@@ -1,0 +1,33 @@
+{% extends 'dashboard-tpl.html.twig' %}
+
+{% block page %}new address{% endblock %}
+
+{% block content %}
+    <div class="" id="address">
+        <h5>New Adress</h5>
+        <div class="row">
+            {{ form_start(address_form) }}
+            <div class="row">
+                {{ form_row(address_form.name) }}
+            </div>
+            <div class="row">
+                <div class="col-6">{{ form_row(address_form.firstname) }}</div>
+                <div class="col-6">{{ form_row(address_form.lastname) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-6">{{ form_row(address_form.address) }}</div>
+                <div class="col-6">{{ form_row(address_form.company) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-6">{{ form_row(address_form.city) }}</div>
+                <div class="col-6">{{ form_row(address_form.country) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-6">{{ form_row(address_form.zipcode) }}</div>
+                <div class="col-6">{{ form_row(address_form.phone) }}</div>
+            </div>
+            {{ form_end(address_form) }}
+        </div>
+    </div>
+
+{% endblock %}

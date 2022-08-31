@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}products{% endblock %}
+
+{% block body %}
+    <section class="p-5 row">
+        <div class="col-12 col-md-3">
+            <h5>Search Product</h5>
+            {{ form(search_form) }}
+        </div>
+        <div class="col-12 col-md-9 row">
+            {% for product in products %}
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="card card-body">
+                        <a href="{{ path('app_product', {'slug': product.slug}) }}">
+                            <img src="/uploads/{{ product.image }}" alt="" class="img-fluid mb-3" style="max-height: 250px">
+                        </a>
+                        <a href="{{ path('app_product', {'slug': product.slug}) }}" class="h6">{{ product.name }}</a>
+                        <br>
+                        <small>{{ product.fullPrice }}</small>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </section>
+{% endblock %}

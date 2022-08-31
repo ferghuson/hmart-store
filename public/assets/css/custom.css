@@ -1,0 +1,22 @@
+.form-check-input{
+    padding: 0 !important;
+    margin-top: 0;
+    margin-right: .25rem;
+}
+/*#order_address, #order_carrier{
+    display: inline-flex;
+}*/
+#order_address .form-check,
+#order_carrier .form-check{
+    background-color: #ddd;
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+}
+#categories .form-check{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+ #categories .form-check-label{
+     margin-bottom: 0;
+ }
